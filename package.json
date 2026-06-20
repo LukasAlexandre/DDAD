@@ -1,0 +1,41 @@
+{
+  "name": "ddad",
+  "version": "0.1.0",
+  "description": "DDAD — Document-Driven AI Development. A CLI that scaffolds a document-driven workflow and AI agent rules into any project.",
+  "type": "module",
+  "bin": {
+    "ddad": "./bin/ddad.js"
+  },
+  "main": "src/cli.js",
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node bin/ddad.js"
+  },
+  "keywords": [
+    "ddad",
+    "ai",
+    "agents",
+    "documentation",
+    "cli",
+    "scaffolding",
+    "claude",
+    "cursor"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LukasAlexandre/DDAD.git"
+  },
+  "homepage": "https://github.com/LukasAlexandre/DDAD",
+  "bugs": {
+    "url": "https://github.com/LukasAlexandre/DDAD/issues"
+  },
+  "license": "MIT"
+}

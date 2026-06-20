@@ -1,0 +1,16 @@
+# DDAD — Document-Driven AI Development
+
+This project follows DDAD. Documents in `ddad/docs/` are the source of truth; code implements what they specify.
+
+Before writing code:
+- Read `ddad/docs/00-overview.md`, `ddad/docs/01-requirements.md`, and `ddad/docs/02-architecture.md`.
+- Check `ddad/docs/decisions/` for prior ADRs that constrain your approach. Don't contradict an accepted ADR without writing a new one that supersedes it.
+
+While implementing:
+- Update `ddad/docs/03-tasks.md` as task status changes.
+- Write a new ADR in `ddad/docs/decisions/` for any decision that would be expensive to reverse.
+- If a document is outdated or wrong, fix it in the same change instead of letting code and docs drift.
+
+Do not implement features with no corresponding requirement in `ddad/docs/01-requirements.md` — flag the gap instead of silently expanding scope.
+
+See AGENTS.md for the full workflow.
