@@ -1,0 +1,5 @@
+# Glossário
+
+## Termos
+
+_..._

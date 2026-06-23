@@ -1,16 +1,17 @@
 # DDAD — Document-Driven AI Development
 
-This project follows DDAD. Documents in `ddad/docs/` are the source of truth; code implements what they specify.
+This project follows DDAD. Documents in `Docs/` are the source of truth; code implements what they specify.
 
 Before writing code:
-- Read `ddad/docs/00-overview.md`, `ddad/docs/01-requirements.md`, and `ddad/docs/02-architecture.md`.
-- Check `ddad/docs/decisions/` for prior ADRs that constrain your approach. Don't contradict an accepted ADR without writing a new one that supersedes it.
+- Read `Docs/01_product/visao_produto.md` and `Docs/01_product/requisitos_funcionais.md`.
+- Check `Docs/02_architecture/` and `Docs/04_governance/registro_decisoes.md` for prior decisions that constrain your approach. Don't contradict a recorded decision without registering a new one that supersedes it.
+- Find or create the relevant session (`ddad session create`) and block (`ddad block create`) for the work.
 
 While implementing:
-- Update `ddad/docs/03-tasks.md` as task status changes.
-- Write a new ADR in `ddad/docs/decisions/` for any decision that would be expensive to reverse.
-- If a document is outdated or wrong, fix it in the same change instead of letting code and docs drift.
+- Generate the execution prompt for a block with `ddad prompt create --block <bloco> --session <sessao>`.
+- Generate and fill the closure feedback with `ddad feedback create --block <bloco> --session <sessao>` when the block is done.
+- Run `ddad validate` and `ddad audit` to check structural compliance before closing a session.
 
-Do not implement features with no corresponding requirement in `ddad/docs/01-requirements.md` — flag the gap instead of silently expanding scope.
+Do not implement features with no corresponding requirement in `Docs/01_product/requisitos_funcionais.md` — flag the gap instead of silently expanding scope.
 
 See AGENTS.md for the full workflow.

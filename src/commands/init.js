@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { copyDir, copyFile, writeJson } from '../utils/fs-helpers.js';
+import { BASE_SESSIONS, scaffoldSession, sessionFolderName } from '../utils/session.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TEMPLATES_DIR = path.join(__dirname, '..', 'templates');
@@ -12,12 +13,20 @@ const pkg = JSON.parse(
 export async function initCommand({ dir, force }) {
   const created = [];
   const skipped = [];
+  const docsDir = path.join(dir, 'Docs');
 
-  copyDir(path.join(TEMPLATES_DIR, 'docs'), path.join(dir, 'ddad', 'docs'), {
+  copyDir(path.join(TEMPLATES_DIR, 'docs_root'), docsDir, { force, created, skipped });
+  copyDir(path.join(TEMPLATES_DIR, 'quality_gates'), path.join(docsDir, '06_quality_gates'), {
     force,
     created,
     skipped,
   });
+
+  const sessionsDir = path.join(docsDir, '05_sessions');
+  for (const session of BASE_SESSIONS) {
+    const sessionDir = path.join(sessionsDir, sessionFolderName(session.number, session.slug));
+    scaffoldSession(sessionDir, session, { force, created, skipped });
+  }
 
   copyFile(
     path.join(TEMPLATES_DIR, 'agents', 'CLAUDE.md'),
@@ -39,7 +48,7 @@ export async function initCommand({ dir, force }) {
     path.join(dir, 'ddad.config.json'),
     {
       version: pkg.version,
-      docsDir: 'ddad/docs',
+      docsDir: 'Docs',
       createdAt: new Date().toISOString(),
     },
     { force, created, skipped },
@@ -50,19 +59,14 @@ export async function initCommand({ dir, force }) {
 
 function report({ dir, created, skipped }) {
   if (created.length > 0) {
-    console.log('Created:');
-    for (const file of created) {
-      console.log(`  ${path.relative(dir, file)}`);
-    }
+    console.log(`Created: ${created.length} file(s)`);
   }
   if (skipped.length > 0) {
-    console.log('\nSkipped (already exist, use --force to overwrite):');
-    for (const file of skipped) {
-      console.log(`  ${path.relative(dir, file)}`);
-    }
+    console.log(`Skipped (already exist, use --force to overwrite): ${skipped.length} file(s)`);
   }
   console.log('\nDDAD initialized. Next steps:');
-  console.log('  1. Fill in ddad/docs/00-overview.md with your project vision.');
+  console.log('  1. Fill in Docs/01_product/visao_produto.md with your project vision.');
   console.log('  2. Review CLAUDE.md / AGENTS.md / .cursorrules and adjust to your workflow.');
-  console.log('  3. Point your AI agent at ddad/docs before it starts implementing.');
+  console.log('  3. Create your first session: ddad session create "<nome>"');
+  console.log(`  4. Run "ddad validate" to check the structure (from ${path.relative(process.cwd(), dir) || '.'}).`);
 }
