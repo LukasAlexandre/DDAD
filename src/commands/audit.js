@@ -1,6 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { scanNamingIssues } from '../utils/naming.js';
+import { auditQualityGates } from '../utils/quality-gates.js';
+import { getMarkdownSection, hasFilledListItem, readMarkdownFile } from '../utils/markdown-checks.js';
 
 const MAIN_SUBFOLDERS = [
   '00_ddad',
@@ -32,16 +34,6 @@ const SESSION_SUBFOLDERS = [
   '13_release',
 ];
 
-const QUALITY_GATES = [
-  'architecture_gate.md',
-  'security_gate.md',
-  'tests_gate.md',
-  'performance_gate.md',
-  'design_gate.md',
-  'deploy_gate.md',
-  'final_audit_gate.md',
-];
-
 const ROOT_FILES = ['CLAUDE.md', 'AGENTS.md', '.cursorrules'];
 
 function mdFiles(dirPath) {
@@ -51,7 +43,26 @@ function mdFiles(dirPath) {
   return fs.readdirSync(dirPath).filter((name) => name.endsWith('.md') && name !== 'README.md');
 }
 
-function auditSessions(sessionsDir, warnings) {
+function auditPendencies(feedbackPath, label, errors, warnings, pendencies) {
+  const read = readMarkdownFile(feedbackPath, label);
+  if (!read.ok) {
+    warnings.push(read.error);
+    return;
+  }
+
+  if (hasFilledListItem(getMarkdownSection(read.content, 'P1', '###'))) {
+    const message = `Pendência P1 (crítica) aberta em: ${label}`;
+    errors.push(message);
+    pendencies.push({ priority: 'P1', label, message });
+  }
+  if (hasFilledListItem(getMarkdownSection(read.content, 'P2', '###'))) {
+    const message = `Pendência P2 (importante) aberta em: ${label}`;
+    warnings.push(message);
+    pendencies.push({ priority: 'P2', label, message });
+  }
+}
+
+function auditSessions(sessionsDir, errors, warnings, pendencies) {
   if (!fs.existsSync(sessionsDir)) {
     return;
   }
@@ -75,8 +86,9 @@ function auditSessions(sessionsDir, warnings) {
       .map((name) => name.replace(/\.md$/, ''));
     const prompts = mdFiles(path.join(sessionDir, '06_prompts'))
       .map((name) => name.replace(/^prompt_/, '').replace(/\.md$/, ''));
-    const feedbacks = mdFiles(path.join(sessionDir, '08_feedbacks'))
-      .map((name) => name.replace(/^feedback_/, '').replace(/\.md$/, ''));
+    const feedbackFiles = mdFiles(path.join(sessionDir, '08_feedbacks'));
+    const feedbacks = feedbackFiles.map((name) => name.replace(/^feedback_/, '').replace(/\.md$/, ''));
+    const validations = mdFiles(path.join(sessionDir, '09_validation'));
 
     for (const block of blocks) {
       if (!prompts.includes(block)) {
@@ -96,6 +108,13 @@ function auditSessions(sessionsDir, warnings) {
         warnings.push(`Feedback órfão (sem bloco correspondente): Docs/05_sessions/${sessionName}/08_feedbacks/feedback_${feedback}.md`);
       }
     }
+    for (const feedbackFile of feedbackFiles) {
+      const label = `Docs/05_sessions/${sessionName}/08_feedbacks/${feedbackFile}`;
+      auditPendencies(path.join(sessionDir, '08_feedbacks', feedbackFile), label, errors, warnings, pendencies);
+    }
+    if (fs.existsSync(path.join(sessionDir, '09_validation')) && validations.length === 0) {
+      warnings.push(`Sessão sem validação preenchida: Docs/05_sessions/${sessionName}/09_validation`);
+    }
   }
 }
 
@@ -103,6 +122,7 @@ export async function auditCommand({ dir }) {
   const errors = [];
   const warnings = [];
   const suggestions = [];
+  const pendencies = [];
   const docsDir = path.join(dir, 'Docs');
 
   if (!fs.existsSync(docsDir)) {
@@ -123,10 +143,12 @@ export async function auditCommand({ dir }) {
     }
   }
 
-  for (const gate of QUALITY_GATES) {
-    if (!fs.existsSync(path.join(docsDir, '06_quality_gates', gate))) {
-      warnings.push(`Quality gate ausente: Docs/06_quality_gates/${gate}`);
-    }
+  const gatesAudit = auditQualityGates(path.join(docsDir, '06_quality_gates'));
+  errors.push(...gatesAudit.errors);
+  warnings.push(...gatesAudit.warnings);
+
+  if (!fs.existsSync(path.join(docsDir, '00_ddad', 'metodologia.md'))) {
+    warnings.push('Arquivo ausente: Docs/00_ddad/metodologia.md');
   }
 
   for (const file of ROOT_FILES) {
@@ -135,10 +157,11 @@ export async function auditCommand({ dir }) {
     }
   }
 
-  auditSessions(path.join(docsDir, '05_sessions'), warnings);
+  auditSessions(path.join(docsDir, '05_sessions'), errors, warnings, pendencies);
 
   const naming = scanNamingIssues(docsDir);
   errors.push(...naming.errors);
+  warnings.push(...naming.warnings);
 
   const status = errors.length === 0 ? 'OK' : 'FAILED';
 
@@ -147,6 +170,20 @@ export async function auditCommand({ dir }) {
   console.log(`Warnings: ${warnings.length}`);
   console.log(`Errors: ${errors.length}`);
   console.log(`Suggestions: ${suggestions.length}`);
+
+  console.log('\nQuality Gates:');
+  for (const gate of gatesAudit.gates) {
+    console.log(`  - Gate: ${gate.gate} - ${gate.state} (${gate.status})`);
+  }
+
+  console.log('\nPendências:');
+  if (pendencies.length === 0) {
+    console.log('  - Nenhuma pendência P1/P2 encontrada.');
+  } else {
+    for (const pendency of pendencies) {
+      console.log(`  - ${pendency.priority}: ${pendency.label}`);
+    }
+  }
 
   if (warnings.length > 0) {
     console.log('\nWarnings:');

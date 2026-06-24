@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { scanNamingIssues } from '../utils/naming.js';
+import { validateRequiredQualityGates } from '../utils/quality-gates.js';
 
 const MAIN_SUBFOLDERS = [
   '00_ddad',
@@ -21,6 +22,8 @@ const ROOT_FILES = ['CLAUDE.md', 'AGENTS.md', '.cursorrules', 'ddad.config.json'
 export async function validateCommand({ dir }) {
   const errors = [];
   const warnings = [];
+  const qualityGateErrors = [];
+  let qualityGateStatus = 'SKIPPED';
   const docsDir = path.join(dir, 'Docs');
 
   if (!fs.existsSync(docsDir)) {
@@ -35,6 +38,11 @@ export async function validateCommand({ dir }) {
     if (!fs.existsSync(path.join(docsDir, '00_ddad', 'metodologia.md'))) {
       errors.push('Arquivo ausente: Docs/00_ddad/metodologia.md');
     }
+
+    const gatesValidation = validateRequiredQualityGates(path.join(docsDir, '06_quality_gates'));
+    qualityGateErrors.push(...gatesValidation.errors);
+    errors.push(...qualityGateErrors);
+    qualityGateStatus = qualityGateErrors.length === 0 ? 'OK' : 'FAIL';
 
     const sessionsDir = path.join(docsDir, '05_sessions');
     if (fs.existsSync(sessionsDir)) {
@@ -65,6 +73,13 @@ export async function validateCommand({ dir }) {
   console.log(`Status: ${status}`);
   console.log(`Warnings: ${warnings.length}`);
   console.log(`Errors: ${errors.length}`);
+  console.log(`[DDAD validate] Quality gates: ${qualityGateStatus}`);
+
+  if (qualityGateErrors.length > 0) {
+    for (const error of qualityGateErrors) {
+      console.log(`  - ${error}`);
+    }
+  }
 
   if (warnings.length > 0) {
     console.log('\nWarnings:');

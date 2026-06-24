@@ -99,13 +99,13 @@ npx ddad feedback create --block bloco_01_login_administrativo --session session
 # -> Docs/05_sessions/session_11_dashboard_admin/08_feedbacks/feedback_bloco_01_login_administrativo.md
 ```
 
-Check that the `Docs/` structure is compliant (exit code `0` if OK, `1` if failed):
+Check that the `Docs/` structure is compliant, including required quality gates and their minimum fields (exit code `0` if OK, `1` if failed):
 
 ```bash
 npx ddad validate
 ```
 
-Audit for orphaned/incomplete sessions, blocks, prompts, and feedbacks:
+Audit for orphaned/incomplete sessions, blocks, prompts, feedbacks, pending P1/P2 items, and quality gate status:
 
 ```bash
 npx ddad audit
@@ -117,7 +117,7 @@ npx ddad audit
 2. **Work session by session, block by block.** Each unit of work is a block inside a session (`ddad block create`), with a generated prompt (`ddad prompt create`) and a closing feedback doc (`ddad feedback create`).
 3. **Let the agent implement against the docs.** `CLAUDE.md`, `AGENTS.md`, and `.cursorrules` instruct any agent to read `Docs/` before writing code.
 4. **Record decisions that are expensive to reverse.** These go in `Docs/04_governance/registro_decisoes.md`.
-5. **Validate and audit regularly.** `ddad validate` checks structural compliance; `ddad audit` flags orphaned or incomplete work.
+5. **Validate and audit regularly.** `ddad validate` checks structural compliance and required quality gates; `ddad audit` flags orphaned or incomplete work, pending P1/P2 items, and quality gate status.
 6. **Keep docs and code in sync.** If an implementation diverges from a document, the document is updated in the same change.
 
 See `Docs/00_ddad/metodologia.md` for the full description of this workflow as it ships to scaffolded projects.
@@ -150,7 +150,7 @@ DDAD is documentation + prompts + implementation + feedback + audit + validation
 
 ## Project status
 
-`v0.1.0` of the DDAD CLI implements `init`, `session create`, `block create`, `prompt create`, `feedback create`, `validate`, and `audit`. As of this version, the official templates (`Docs/` content, session skeleton, block/prompt/feedback/validation templates, quality gates, and agent rule files) were substantially rewritten for documentation quality — not just structural placeholders, but content that guides real execution for both humans and AI agents (Claude Code, Codex, Cursor, Copilot). No new CLI commands were introduced in this pass; expect future versions to keep refining templates and rules as the methodology is used on real projects.
+`v0.1.0` of the DDAD CLI implements `init`, `session create`, `block create`, `prompt create`, `feedback create`, `validate`, and `audit`. As of this version, the official templates (`Docs/` content, session skeleton, block/prompt/feedback/validation templates, quality gates, and agent rule files) were substantially rewritten for documentation quality — not just structural placeholders, but content that guides real execution for both humans and AI agents (Claude Code, Codex, Cursor, Copilot). The validation and audit commands now also understand required quality gates: `validate` checks their minimum structure and required fields, while `audit` reports gate status and P1/P2 pendencies.
 
 ## License
 

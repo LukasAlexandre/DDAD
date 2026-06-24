@@ -51,3 +51,19 @@ Garantir que mudanças de UI respeitem a identidade visual e o design system, e 
 - [ ] Aprovado com ressalvas
 - [ ] Reprovado
 - [ ] Bloqueado
+
+## 10. Responsável pela Validação
+
+_Quem executou esta validação — pessoa humana ou agente de IA, e sob supervisão de quem._
+
+**Responsável:** A definir
+
+## 11. Data da Validação
+
+**Data:** A definir
+
+## 12. Observações
+
+_Contexto adicional relevante para quem ler este gate depois: exceções aceitas, ressalvas, links para evidências externas. Se nenhuma, escreva "Nenhuma observação adicional"._
+
+**Observações:** A definir

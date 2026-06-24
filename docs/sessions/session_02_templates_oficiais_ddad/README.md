@@ -16,4 +16,4 @@ Todos os templates em `src/templates/` foram reescritos com conteúdo substantiv
 
 ## Próximo Bloco
 
-Bloco 03 — a definir (candidatos: comando gerador para `validacao_template.md`, testes automatizados do CLI, comandos de listagem de sessões/blocos — pendências já registradas desde o Bloco 01 e ainda não endereçadas).
+Bloco 03 — Reforço de validação/auditoria DDAD.

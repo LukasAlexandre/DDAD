@@ -91,4 +91,4 @@ O Bloco 03 está liberado para planejamento e execução, condicionado à confir
 
 ## 7. Próximo Bloco Liberado
 
-Bloco 03 — a definir (candidatos: comando gerador de validação, testes automatizados do CLI, comandos de listagem de sessões/blocos).
+Bloco 03 — Reforço de validação/auditoria DDAD.
