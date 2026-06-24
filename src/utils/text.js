@@ -1,3 +1,5 @@
+import path from 'node:path';
+
 /**
  * Converts arbitrary user input into a lowercase snake_case slug:
  * strips accents, replaces anything that isn't [a-z0-9] with underscores,
@@ -23,4 +25,17 @@ export function renderTemplate(content, data) {
   return content.replace(/{{\s*([A-Z_]+)\s*}}/g, (match, key) => (
     key in data ? String(data[key]) : match
   ));
+}
+
+/**
+ * Derives {{PROJECT_NAME}} from the target directory name. `dir` is always
+ * an absolute, resolved path by the time commands receive it (see cli.js).
+ */
+export function projectNameOf(dir) {
+  return path.basename(dir);
+}
+
+/** Returns {{CURRENT_DATE}} as an ISO calendar date (YYYY-MM-DD). */
+export function currentDate() {
+  return new Date().toISOString().slice(0, 10);
 }

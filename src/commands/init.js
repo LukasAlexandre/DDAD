@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { copyDir, copyFile, writeJson } from '../utils/fs-helpers.js';
 import { BASE_SESSIONS, scaffoldSession, sessionFolderName } from '../utils/session.js';
+import { projectNameOf, currentDate, renderTemplate } from '../utils/text.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TEMPLATES_DIR = path.join(__dirname, '..', 'templates');
@@ -14,18 +15,22 @@ export async function initCommand({ dir, force }) {
   const created = [];
   const skipped = [];
   const docsDir = path.join(dir, 'Docs');
+  const projectName = projectNameOf(dir);
+  const today = currentDate();
+  const docTransform = (content) => renderTemplate(content, { PROJECT_NAME: projectName, CURRENT_DATE: today });
 
-  copyDir(path.join(TEMPLATES_DIR, 'docs_root'), docsDir, { force, created, skipped });
+  copyDir(path.join(TEMPLATES_DIR, 'docs_root'), docsDir, { force, created, skipped, transform: docTransform });
   copyDir(path.join(TEMPLATES_DIR, 'quality_gates'), path.join(docsDir, '06_quality_gates'), {
     force,
     created,
     skipped,
+    transform: docTransform,
   });
 
   const sessionsDir = path.join(docsDir, '05_sessions');
   for (const session of BASE_SESSIONS) {
     const sessionDir = path.join(sessionsDir, sessionFolderName(session.number, session.slug));
-    scaffoldSession(sessionDir, session, { force, created, skipped });
+    scaffoldSession(sessionDir, { ...session, projectName, currentDate: today }, { force, created, skipped });
   }
 
   copyFile(

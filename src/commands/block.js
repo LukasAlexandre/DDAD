@@ -2,7 +2,15 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { nextSequence, writeText } from '../utils/fs-helpers.js';
-import { slugify, pad2, renderTemplate } from '../utils/text.js';
+import { slugify, pad2, renderTemplate, projectNameOf, currentDate } from '../utils/text.js';
+
+/**
+ * Splits a `session_NN_some_slug` folder name into its number and slug.
+ */
+export function parseSessionFolderName(session) {
+  const match = session.match(/^session_(\d+)_(.+)$/);
+  return match ? { number: match[1], slug: match[2] } : { number: undefined, slug: undefined };
+}
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const BLOCK_TEMPLATE_PATH = path.join(__dirname, '..', 'templates', 'block', 'bloco_template.md');
@@ -48,8 +56,17 @@ export async function blockCreateCommand({ name, session, dir, force }) {
   const filename = `bloco_${number}_${slug}.md`;
   const destPath = path.join(blocksDir, filename);
 
+  const { number: sessionNumber, slug: sessionSlug } = parseSessionFolderName(session);
   const template = fs.readFileSync(BLOCK_TEMPLATE_PATH, 'utf8');
-  const content = renderTemplate(template, { BLOCK_NUMBER: number, BLOCK_TITLE: name });
+  const content = renderTemplate(template, {
+    BLOCK_NUMBER: number,
+    BLOCK_TITLE: name,
+    BLOCK_SLUG: slug,
+    SESSION_NUMBER: sessionNumber,
+    SESSION_SLUG: sessionSlug,
+    PROJECT_NAME: projectNameOf(dir),
+    CURRENT_DATE: currentDate(),
+  });
 
   const created = [];
   const skipped = [];

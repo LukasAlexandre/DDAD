@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { nextSequence } from '../utils/fs-helpers.js';
 import { scaffoldSession, sessionFolderName } from '../utils/session.js';
-import { slugify, pad2 } from '../utils/text.js';
+import { slugify, pad2, projectNameOf, currentDate } from '../utils/text.js';
 
 export async function sessionCreateCommand({ name, dir, force }) {
   if (!name) {
@@ -16,7 +16,11 @@ export async function sessionCreateCommand({ name, dir, force }) {
 
   const created = [];
   const skipped = [];
-  scaffoldSession(sessionDir, { number, title: name }, { force, created, skipped });
+  scaffoldSession(
+    sessionDir,
+    { number, title: name, slug, projectName: projectNameOf(dir), currentDate: currentDate() },
+    { force, created, skipped },
+  );
 
   if (created.length === 0) {
     console.log(`Session already exists: Docs/05_sessions/${folderName} (use --force to overwrite)`);

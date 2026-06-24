@@ -122,9 +122,35 @@ npx ddad audit
 
 See `Docs/00_ddad/metodologia.md` for the full description of this workflow as it ships to scaffolded projects.
 
+## Official templates
+
+Every file `ddad` generates comes from a template in `src/templates/`. These aren't empty headers — each one ships with guiding questions, fill-in instructions, checklists, and (where useful) tables and examples, so a human or an AI agent has enough to act on without inventing structure on the spot. This applies across the board: product/architecture/contract/governance/design-system/deploy/observability docs in `Docs/`, the session skeleton (`05_sessions/<sessao>/`), the block/prompt/feedback/validation templates, the seven quality gates, and the agent rule files (`CLAUDE.md`, `AGENTS.md`, `.cursorrules`).
+
+Templates share a consistent placeholder convention, rendered automatically at generation time:
+
+| Placeholder | Filled with |
+|---|---|
+| `{{PROJECT_NAME}}` | Name of the target directory (`--dir`) |
+| `{{CURRENT_DATE}}` | Generation date, `YYYY-MM-DD` |
+| `{{SESSION_NUMBER}}` / `{{SESSION_TITLE}}` / `{{SESSION_SLUG}}` | Session metadata |
+| `{{BLOCK_NUMBER}}` / `{{BLOCK_TITLE}}` / `{{BLOCK_SLUG}}` | Block metadata |
+
+`{{NEXT_BLOCK}}` is reserved but intentionally not auto-rendered — there's no reliable way to know the next block's name when the current one is created. Fill it in by hand when you know it; see `Docs/00_ddad/glossario.md`.
+
+## The full loop
+
+DDAD is documentation + prompts + implementation + feedback + audit + validation — not just a folder generator. A block isn't done when the code works; it's done when:
+
+1. The block document (`05_blocks/`) describes scope and acceptance criteria.
+2. The prompt (`06_prompts/`) was generated and used to drive implementation.
+3. The implementation matches what the block and prompt describe (or deviations were reported, not silently absorbed).
+4. The feedback (`08_feedbacks/`) records what actually happened, including pendencies classified P1–P4.
+5. `ddad validate` and `ddad audit` pass against the current `Docs/` structure.
+6. The block's validation (status: approved / approved with caveats / rejected / blocked) decides whether the next block is released.
+
 ## Project status
 
-`v0.1.0` of the DDAD CLI implements `init`, `session create`, `block create`, `prompt create`, `feedback create`, `validate`, and `audit`. Expect the document templates, quality gates, and agent rule files to evolve as the methodology is used on real projects.
+`v0.1.0` of the DDAD CLI implements `init`, `session create`, `block create`, `prompt create`, `feedback create`, `validate`, and `audit`. As of this version, the official templates (`Docs/` content, session skeleton, block/prompt/feedback/validation templates, quality gates, and agent rule files) were substantially rewritten for documentation quality — not just structural placeholders, but content that guides real execution for both humans and AI agents (Claude Code, Codex, Cursor, Copilot). No new CLI commands were introduced in this pass; expect future versions to keep refining templates and rules as the methodology is used on real projects.
 
 ## License
 

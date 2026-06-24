@@ -2,8 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { writeText } from '../utils/fs-helpers.js';
-import { renderTemplate } from '../utils/text.js';
-import { sessionDirOf, blockFilePath, parseBlockFile } from './block.js';
+import { renderTemplate, projectNameOf, currentDate } from '../utils/text.js';
+import { sessionDirOf, blockFilePath, parseBlockFile, parseSessionFolderName } from './block.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const FEEDBACK_TEMPLATE_PATH = path.join(__dirname, '..', 'templates', 'feedback', 'feedback_template.md');
@@ -28,10 +28,20 @@ export async function feedbackCreateCommand({ block, session, dir, force }) {
 
   const { number, title } = parseBlockFile(blockPath);
   const blockId = path.basename(blockPath, '.md');
+  const blockSlug = blockId.replace(/^bloco_\d+_/, '');
+  const { number: sessionNumber, slug: sessionSlug } = parseSessionFolderName(session);
   const destPath = path.join(sessionDir, '08_feedbacks', `feedback_${blockId}.md`);
 
   const template = fs.readFileSync(FEEDBACK_TEMPLATE_PATH, 'utf8');
-  const content = renderTemplate(template, { BLOCK_NUMBER: number, BLOCK_TITLE: title });
+  const content = renderTemplate(template, {
+    BLOCK_NUMBER: number,
+    BLOCK_TITLE: title,
+    BLOCK_SLUG: blockSlug,
+    SESSION_NUMBER: sessionNumber,
+    SESSION_SLUG: sessionSlug,
+    PROJECT_NAME: projectNameOf(dir),
+    CURRENT_DATE: currentDate(),
+  });
 
   const created = [];
   const skipped = [];

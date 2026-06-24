@@ -2,24 +2,93 @@
 
 Você é o executor técnico do projeto seguindo a metodologia DDAD.
 
-## 1. Objetivo
+## 1. Contexto Obrigatório
 
-## 2. Contexto
+Antes de qualquer ação, leia:
+- `Docs/00_ddad/metodologia.md` e `Docs/00_ddad/regras_ddad.md`
+- O bloco completo em `Docs/05_sessions/session_{{SESSION_NUMBER}}_{{SESSION_SLUG}}/05_blocks/bloco_{{BLOCK_NUMBER}}_{{BLOCK_SLUG}}.md`
+- Requisitos, contratos e decisões técnicas referenciados pelo bloco
+
+## 2. Objetivo
+
+_..._
 
 ## 3. Escopo
 
+_..._
+
 ## 4. Fora de Escopo
 
-## 5. Regras Obrigatórias
+_..._
 
-## 6. Arquivos Permitidos
+## 5. Arquivos Permitidos
 
-## 7. Tarefas
+_Liste os caminhos exatos que podem ser criados/alterados. Não toque em arquivos fora desta lista sem reportar antes._
 
-## 8. Critérios de Aceite
+- _..._
 
-## 9. Validações Obrigatórias
+## 6. Regras Obrigatórias
 
-## 10. Feedback Final Obrigatório
+- Não expanda o escopo sem reportar e obter confirmação primeiro.
+- Não introduza dependência nova sem registrar a decisão em `Docs/04_governance/registro_decisoes.md`.
+- Siga as convenções de `Docs/04_governance/convencoes_codigo.md`.
+- Registre toda pendência encontrada com prioridade P1–P4.
 
-## 11. Commit Semântico Sugerido
+## 7. Restrições de Segurança
+
+_Regras específicas deste bloco. Ver `Docs/03_contracts/contrato_autenticacao.md` e `Docs/06_quality_gates/security_gate.md`. Se não aplicável, escreva "Não aplicável" explicitamente._
+
+_..._
+
+## 8. Restrições de Performance
+
+_Limiares ou cuidados específicos deste bloco. Ver `Docs/01_product/requisitos_nao_funcionais.md` e `Docs/06_quality_gates/performance_gate.md`. Se não aplicável, escreva "Não aplicável" explicitamente._
+
+_..._
+
+## 9. Restrições de Design System
+
+_Componentes/tokens a respeitar. Ver `Docs/07_design_system/`. Se não aplicável, escreva "Não aplicável" explicitamente._
+
+_..._
+
+## 10. Tarefas
+
+1. _..._
+2. _..._
+3. _..._
+
+## 11. Critérios de Aceite
+
+- [ ] _..._
+
+## 12. Validações Locais Obrigatórias
+
+Execute e confirme que passam antes de finalizar:
+
+- [ ] `ddad validate`
+- [ ] _..._
+
+## 13. Feedback Final Obrigatório
+
+Ao concluir, gere o feedback com:
+
+```
+ddad feedback create --block bloco_{{BLOCK_NUMBER}}_{{BLOCK_SLUG}} --session session_{{SESSION_NUMBER}}_{{SESSION_SLUG}}
+```
+
+Preencha todas as seções, incluindo pendências classificadas P1–P4.
+
+## 14. Validação Final
+
+Preencha `Docs/05_sessions/session_{{SESSION_NUMBER}}_{{SESSION_SLUG}}/09_validation/` ou o arquivo de validação do bloco com o status final (Aprovado / Aprovado com ressalvas / Reprovado / Bloqueado).
+
+## 15. Commit Semântico Sugerido
+
+```
+feat({{BLOCK_SLUG}}): _..._
+```
+
+## 16. Regra de Não Commit Automático
+
+**Não faça commit automaticamente sem confirmação do usuário.** Sugira o commit acima e aguarde aprovação explícita antes de executar `git add`, `git commit` ou `git push`.
