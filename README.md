@@ -12,6 +12,8 @@ AI agents are good at writing code and bad at remembering *why* it was written t
 npx ddad init
 ```
 
+> The package has not been published to npm yet. Until it is, run it directly from a clone — see [Local usage](#local-usage-before-npm-publish) below.
+
 This scaffolds the official DDAD structure into your current project:
 
 ```
@@ -49,6 +51,26 @@ your-project/
 Each session contains the same internal structure: `01_intake`, `02_analysis`, `03_ideas`, `04_planning`, `05_blocks`, `06_prompts`, `07_bugs`, `08_feedbacks`, `09_validation`, `10_tests`, `11_security`, `12_performance`, `13_release`, plus a root `README.md`.
 
 Existing files are never overwritten unless you pass `--force`.
+
+## Local usage (before npm publish)
+
+`ddad` has not been published to npm yet. Until it is, run it directly from a clone of this repository instead of `npx ddad`:
+
+```bash
+node bin/ddad.js init --dir ./my-project
+node bin/ddad.js validate --dir ./my-project
+node bin/ddad.js audit --dir ./my-project
+```
+
+You can also build the tarball locally and install it elsewhere to simulate a real package install:
+
+```bash
+npm pack
+npm install /path/to/ddad-<version>.tgz   # from another project
+npx ddad init --dir ./my-project
+```
+
+Every `npx ddad ...` example in this README works the same way once the package is published — only the invocation (`node bin/ddad.js` vs. `npx ddad`) changes.
 
 ## CLI reference
 
