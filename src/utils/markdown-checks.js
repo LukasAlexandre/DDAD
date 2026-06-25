@@ -82,7 +82,7 @@ export function hasChecklistItem(content) {
 
 /**
  * True when a section has a real bullet item, as opposed to only the
- * unfilled `_..._` placeholder used across DDAD templates.
+ * unfilled `_..._` placeholder used across DDAT templates.
  */
 export function hasFilledListItem(content) {
   return content.split('\n').some((line) => {

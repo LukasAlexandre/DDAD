@@ -6,7 +6,7 @@ import { renderTemplate, pad2 } from './text.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export const SESSION_TEMPLATE_DIR = path.join(__dirname, '..', 'templates', 'session');
 
-// The 10 base sessions stamped out by `ddad init`. Not a limit — `ddad session
+// The 10 base sessions stamped out by `ddat init`. Not a limit — `ddat session
 // create` continues the sequence from session_11 onward.
 export const BASE_SESSIONS = [
   ['project_foundation', 'Project Foundation'],

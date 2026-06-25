@@ -61,7 +61,7 @@ _Verificáveis, não aspiracionais. Use checkboxes — cada um deve poder ser ma
 
 ## 10. Validações Obrigatórias
 
-_Comandos/testes que precisam passar antes do bloco ser considerado concluído (ex.: `ddad validate`, suíte de testes, lint)._
+_Comandos/testes que precisam passar antes do bloco ser considerado concluído (ex.: `ddat validate`, suíte de testes, lint)._
 
 - [ ] _..._
 
@@ -91,13 +91,13 @@ _O que pode dar errado especificamente neste bloco (não o backlog geral de risc
 
 ## 15. Pendências Esperadas
 
-_Pendências que já se sabe, antes de implementar, que provavelmente vão sobrar (classificadas P1–P4 conforme `Docs/00_ddad/metodologia.md`, seção 12)._
+_Pendências que já se sabe, antes de implementar, que provavelmente vão sobrar (classificadas P1–P4 conforme `Docs/00_ddat/metodologia.md`, seção 12)._
 
 - _..._
 
 ## 16. Feedback Obrigatório
 
-_Lembrete: ao final deste bloco, gerar e preencher o feedback via `ddad feedback create --block bloco_{{BLOCK_NUMBER}}_{{BLOCK_SLUG}} --session session_{{SESSION_NUMBER}}_{{SESSION_SLUG}}`. Sem feedback preenchido, o bloco não está concluído._
+_Lembrete: ao final deste bloco, gerar e preencher o feedback via `ddat feedback create --block bloco_{{BLOCK_NUMBER}}_{{BLOCK_SLUG}} --session session_{{SESSION_NUMBER}}_{{SESSION_SLUG}}`. Sem feedback preenchido, o bloco não está concluído._
 
 ## 17. Commit Semântico Sugerido
 

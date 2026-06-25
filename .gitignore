@@ -5,3 +5,4 @@ npm-debug.log*
 .env
 *.tgz
 tmp_ddad_*/
+tmp_ddat_*/

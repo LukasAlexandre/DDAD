@@ -46,7 +46,7 @@ _O que foi testado e como (manual, automatizado). Resultado de cada teste, não 
 
 ## 9. Validações Executadas
 
-_Resultado de `ddad validate`, `ddad audit`, lint, build, etc._
+_Resultado de `ddat validate`, `ddat audit`, lint, build, etc._
 
 - _..._
 

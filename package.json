@@ -1,10 +1,10 @@
 {
-  "name": "ddad",
+  "name": "ddat",
   "version": "0.1.0",
-  "description": "DDAD — Document-Driven AI Development. A CLI that scaffolds a document-driven workflow and AI agent rules into any project.",
+  "description": "DDAT — Document-Driven AI Tools. A CLI that scaffolds a document-driven workflow and AI agent rules into any project.",
   "type": "module",
   "bin": {
-    "ddad": "./bin/ddad.js"
+    "ddat": "./bin/ddat.js"
   },
   "main": "src/cli.js",
   "author": "LukasAlexandre",
@@ -18,10 +18,10 @@
     "node": ">=18"
   },
   "scripts": {
-    "start": "node bin/ddad.js"
+    "start": "node bin/ddat.js"
   },
   "keywords": [
-    "ddad",
+    "ddat",
     "ai",
     "agents",
     "documentation",

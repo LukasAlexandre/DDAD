@@ -5,7 +5,7 @@ import { slugify, pad2, projectNameOf, currentDate } from '../utils/text.js';
 
 export async function sessionCreateCommand({ name, dir, force }) {
   if (!name) {
-    throw new Error('session create requires a name, e.g. ddad session create "dashboard admin"');
+    throw new Error('session create requires a name, e.g. ddat session create "dashboard admin"');
   }
 
   const sessionsDir = path.join(dir, 'Docs', '05_sessions');

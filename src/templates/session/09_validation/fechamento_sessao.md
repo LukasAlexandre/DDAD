@@ -28,7 +28,7 @@ Critérios definidos para a sessão como um todo (não apenas por bloco) — der
 
 - [ ] Todos os blocos planejados têm feedback preenchido.
 - [ ] Todas as pendências P1 levantadas durante a sessão foram resolvidas.
-- [ ] `ddad validate` e `ddad audit` não reportam problema relacionado a esta sessão.
+- [ ] `ddat validate` e `ddat audit` não reportam problema relacionado a esta sessão.
 - [ ] Documentação afetada (`Docs/01_product/`, `Docs/02_architecture/`, contratos, design system) foi atualizada.
 - [ ] Riscos remanescentes foram promovidos para `Docs/04_governance/matriz_riscos.md`.
 

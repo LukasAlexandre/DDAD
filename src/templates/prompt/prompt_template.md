@@ -1,11 +1,11 @@
 # Prompt — Bloco {{BLOCK_NUMBER}}: {{BLOCK_TITLE}}
 
-Você é o executor técnico do projeto seguindo a metodologia DDAD.
+Você é o executor técnico do projeto seguindo a metodologia DDAT.
 
 ## 1. Contexto Obrigatório
 
 Antes de qualquer ação, leia:
-- `Docs/00_ddad/metodologia.md` e `Docs/00_ddad/regras_ddad.md`
+- `Docs/00_ddat/metodologia.md` e `Docs/00_ddat/regras_ddat.md`
 - O bloco completo em `Docs/05_sessions/session_{{SESSION_NUMBER}}_{{SESSION_SLUG}}/05_blocks/bloco_{{BLOCK_NUMBER}}_{{BLOCK_SLUG}}.md`
 - Requisitos, contratos e decisões técnicas referenciados pelo bloco
 
@@ -66,7 +66,7 @@ _..._
 
 Execute e confirme que passam antes de finalizar:
 
-- [ ] `ddad validate`
+- [ ] `ddat validate`
 - [ ] _..._
 
 ## 13. Feedback Final Obrigatório
@@ -74,7 +74,7 @@ Execute e confirme que passam antes de finalizar:
 Ao concluir, gere o feedback com:
 
 ```
-ddad feedback create --block bloco_{{BLOCK_NUMBER}}_{{BLOCK_SLUG}} --session session_{{SESSION_NUMBER}}_{{SESSION_SLUG}}
+ddat feedback create --block bloco_{{BLOCK_NUMBER}}_{{BLOCK_SLUG}} --session session_{{SESSION_NUMBER}}_{{SESSION_SLUG}}
 ```
 
 Preencha todas as seções, incluindo pendências classificadas P1–P4.

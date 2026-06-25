@@ -42,7 +42,7 @@ export async function blockCreateCommand({ name, session, dir, force }) {
     throw new Error('block create requires --session <session_folder_name>');
   }
   if (!name) {
-    throw new Error('block create requires a name, e.g. ddad block create "login administrativo" --session <sessao>');
+    throw new Error('block create requires a name, e.g. ddat block create "login administrativo" --session <sessao>');
   }
 
   const sessionDir = sessionDirOf(dir, session);

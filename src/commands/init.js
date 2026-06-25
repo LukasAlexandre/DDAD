@@ -50,7 +50,7 @@ export async function initCommand({ dir, force }) {
   );
 
   writeJson(
-    path.join(dir, 'ddad.config.json'),
+    path.join(dir, 'ddat.config.json'),
     {
       version: pkg.version,
       docsDir: 'Docs',
@@ -69,9 +69,9 @@ function report({ dir, created, skipped }) {
   if (skipped.length > 0) {
     console.log(`Skipped (already exist, use --force to overwrite): ${skipped.length} file(s)`);
   }
-  console.log('\nDDAD initialized. Next steps:');
+  console.log('\nDDAT initialized. Next steps:');
   console.log('  1. Fill in Docs/01_product/visao_produto.md with your project vision.');
   console.log('  2. Review CLAUDE.md / AGENTS.md / .cursorrules and adjust to your workflow.');
-  console.log('  3. Create your first session: ddad session create "<nome>"');
-  console.log(`  4. Run "ddad validate" to check the structure (from ${path.relative(process.cwd(), dir) || '.'}).`);
+  console.log('  3. Create your first session: ddat session create "<nome>"');
+  console.log(`  4. Run "ddat validate" to check the structure (from ${path.relative(process.cwd(), dir) || '.'}).`);
 }
