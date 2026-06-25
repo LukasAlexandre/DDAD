@@ -4,7 +4,7 @@
   "description": "DDAT — Document-Driven AI Tools. A CLI that scaffolds a document-driven workflow and AI agent rules into any project.",
   "type": "module",
   "bin": {
-    "ddat": "./bin/ddat.js"
+    "ddat": "bin/ddat.js"
   },
   "main": "src/cli.js",
   "author": "LukasAlexandre",

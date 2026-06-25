@@ -10,11 +10,13 @@ AI agents are good at writing code and bad at remembering *why* it was written t
 
 ## Quick start
 
+After the npm publication is completed, use:
+
 ```bash
 npx ddat init
 ```
 
-> The package has not been published to npm yet. Until it is, run it directly from a clone — see [Local usage](#local-usage-before-npm-publish) below.
+Until then, run the CLI from a local checkout; see [Local usage](#local-usage-from-a-checkout).
 
 This scaffolds the official DDAT structure into your current project:
 
@@ -54,9 +56,9 @@ Each session contains the same internal structure: `01_intake`, `02_analysis`, `
 
 Existing files are never overwritten unless you pass `--force`.
 
-## Local usage (before npm publish)
+## Local usage from a checkout
 
-`ddat` has not been published to npm yet. Until it is, run it directly from a clone of this repository instead of `npx ddat`:
+When developing the CLI locally, run it directly from a clone of this repository:
 
 ```bash
 node bin/ddat.js init --dir ./my-project
@@ -72,7 +74,7 @@ npm install /path/to/ddat-<version>.tgz   # from another project
 npx ddat init --dir ./my-project
 ```
 
-Every `npx ddat ...` example in this README works the same way once the package is published — only the invocation (`node bin/ddat.js` vs. `npx ddat`) changes.
+The local invocation mirrors the expected published CLI; only the executable changes (`node bin/ddat.js` locally, `npx ddat` from npm after publication).
 
 ## CLI reference
 
