@@ -6,7 +6,7 @@
 
 ## 1. Organização de Pastas
 
-Descreva (ou desenhe em árvore de texto) a estrutura de diretórios do código-fonte, não de `Docs/` (isso já está em `Docs/00_ddat/folder_schema.md`).
+Descreva (ou desenhe em árvore de texto) a estrutura de diretórios do código-fonte, não de `Docs/` (isso já está em `Docs/00_ddae/folder_schema.md`).
 
 ```
 _..._
@@ -14,7 +14,7 @@ _..._
 
 ## 2. Convenções de Nomenclatura de Código
 
-Como arquivos, componentes, módulos, classes e funções são nomeados neste projeto (pode divergir das convenções de `Docs/`, que são `snake_case` por regra da DDAT).
+Como arquivos, componentes, módulos, classes e funções são nomeados neste projeto (pode divergir das convenções de `Docs/`, que são `snake_case` por regra da DDAE).
 
 _..._
 

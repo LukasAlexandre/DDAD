@@ -3,6 +3,6 @@
 import { run } from '../src/cli.js';
 
 run(process.argv).catch((error) => {
-  console.error(`ddat: ${error.message}`);
+  console.error(`ddae: ${error.message}`);
   process.exitCode = 1;
 });

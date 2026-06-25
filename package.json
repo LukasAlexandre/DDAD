@@ -1,10 +1,10 @@
 {
-  "name": "ddat",
+  "name": "ddae",
   "version": "0.1.0",
-  "description": "DDAT — Document-Driven AI Tools. A CLI that scaffolds a document-driven workflow and AI agent rules into any project.",
+  "description": "DDAE — Document-Driven AI Engineering. A CLI that scaffolds a document-driven workflow and AI agent rules into any project.",
   "type": "module",
   "bin": {
-    "ddat": "bin/ddat.js"
+    "ddae": "bin/ddae.js"
   },
   "main": "src/cli.js",
   "author": "LukasAlexandre",
@@ -18,10 +18,10 @@
     "node": ">=18"
   },
   "scripts": {
-    "start": "node bin/ddat.js"
+    "start": "node bin/ddae.js"
   },
   "keywords": [
-    "ddat",
+    "ddae",
     "ai",
     "agents",
     "documentation",

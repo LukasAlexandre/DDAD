@@ -4,7 +4,7 @@ import { scanNamingIssues } from '../utils/naming.js';
 import { validateRequiredQualityGates } from '../utils/quality-gates.js';
 
 const MAIN_SUBFOLDERS = [
-  '00_ddat',
+  '00_ddae',
   '01_product',
   '02_architecture',
   '03_contracts',
@@ -17,7 +17,7 @@ const MAIN_SUBFOLDERS = [
   '99_archive',
 ];
 
-const ROOT_FILES = ['CLAUDE.md', 'AGENTS.md', '.cursorrules', 'ddat.config.json'];
+const ROOT_FILES = ['CLAUDE.md', 'AGENTS.md', '.cursorrules', 'ddae.config.json'];
 
 export async function validateCommand({ dir }) {
   const errors = [];
@@ -27,7 +27,7 @@ export async function validateCommand({ dir }) {
   const docsDir = path.join(dir, 'Docs');
 
   if (!fs.existsSync(docsDir)) {
-    errors.push('Docs/ não encontrado. Execute "ddat init" primeiro.');
+    errors.push('Docs/ não encontrado. Execute "ddae init" primeiro.');
   } else {
     for (const folder of MAIN_SUBFOLDERS) {
       if (!fs.existsSync(path.join(docsDir, folder))) {
@@ -35,8 +35,8 @@ export async function validateCommand({ dir }) {
       }
     }
 
-    if (!fs.existsSync(path.join(docsDir, '00_ddat', 'metodologia.md'))) {
-      errors.push('Arquivo ausente: Docs/00_ddat/metodologia.md');
+    if (!fs.existsSync(path.join(docsDir, '00_ddae', 'metodologia.md'))) {
+      errors.push('Arquivo ausente: Docs/00_ddae/metodologia.md');
     }
 
     const gatesValidation = validateRequiredQualityGates(path.join(docsDir, '06_quality_gates'));
@@ -69,11 +69,11 @@ export async function validateCommand({ dir }) {
 
   const status = errors.length === 0 ? 'OK' : 'FAILED';
 
-  console.log('DDAT Validation Report\n');
+  console.log('DDAE Validation Report\n');
   console.log(`Status: ${status}`);
   console.log(`Warnings: ${warnings.length}`);
   console.log(`Errors: ${errors.length}`);
-  console.log(`[DDAT validate] Quality gates: ${qualityGateStatus}`);
+  console.log(`[DDAE validate] Quality gates: ${qualityGateStatus}`);
 
   if (qualityGateErrors.length > 0) {
     for (const error of qualityGateErrors) {

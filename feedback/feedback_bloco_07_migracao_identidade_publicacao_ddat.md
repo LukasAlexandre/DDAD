@@ -84,3 +84,5 @@ Nao executada, pois o pacote nao foi publicado. Os comandos abaixo permanecem pe
 ## Proxima acao recomendada
 
 Resolver o bloqueio de autenticacao npm e repetir somente a etapa de publicacao. Nao iniciar novo bloco antes de concluir esta pendencia.
+
+> Atualização posterior: o nome DDAT também foi bloqueado para publicação npm por similaridade. A identidade final foi migrada no Bloco 08 para DDAE — Document-Driven AI Engineering.

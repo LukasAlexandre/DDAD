@@ -1,4 +1,4 @@
-# Glossário DDAT
+# Glossário DDAE
 
 > Projeto: {{PROJECT_NAME}} · Atualizado em: {{CURRENT_DATE}}
 
@@ -6,21 +6,21 @@
 
 | Termo | Significado |
 |---|---|
-| **DDAT** | Document-Driven AI Tools — metodologia onde documentos versionados são a fonte da verdade, e o código implementa o que eles descrevem. |
+| **DDAE** | Document-Driven AI Engineering — metodologia onde documentos versionados são a fonte da verdade, e o código implementa o que eles descrevem. |
 | **Sessão** | Agrupamento temático de blocos (ex.: autenticação, performance). Pasta em `Docs/05_sessions/session_NN_<nome>/`. |
 | **Bloco** | Unidade de execução com escopo fechado, critérios de aceite e fechamento documentado. Arquivo em `05_blocks/bloco_NN_<nome>.md`. |
 | **Prompt** | Instrução executável gerada a partir de um bloco, pronta para ser usada por um agente de IA. Arquivo em `06_prompts/prompt_<bloco>.md`. |
 | **Feedback** | Registro do que foi de fato implementado em um bloco: arquivos alterados, decisões, problemas, pendências. Arquivo em `08_feedbacks/feedback_<bloco>.md`. |
 | **Validação** | Decisão formal sobre o status de um bloco (aprovado, aprovado com ressalvas, reprovado, bloqueado) e se ela libera o próximo. |
 | **Quality Gate** | Checklist de aprovação para uma área específica (arquitetura, segurança, testes, performance, design, deploy, auditoria final), em `Docs/06_quality_gates/`. |
-| **Auditoria** | Verificação estrutural ampla (`ddat audit`) que aponta blocos sem prompt/feedback, sessões incompletas, nomes fora do padrão, etc. |
-| **Pendência (P1–P4)** | Item de trabalho não resolvido, classificado por prioridade. Ver `Docs/00_ddat/metodologia.md`, seção 12. |
+| **Auditoria** | Verificação estrutural ampla (`ddae audit`) que aponta blocos sem prompt/feedback, sessões incompletas, nomes fora do padrão, etc. |
+| **Pendência (P1–P4)** | Item de trabalho não resolvido, classificado por prioridade. Ver `Docs/00_ddae/metodologia.md`, seção 12. |
 | **Contrato** | Documento em `Docs/03_contracts/` que define a interface entre duas partes do sistema (frontend/backend, app/banco, etc.) de forma explícita e versionada. |
 | **Decisão técnica** | Escolha cara de reverter, registrada em `Docs/04_governance/registro_decisoes.md` com motivo e alternativas consideradas. |
 
 ## 2. Placeholders Reconhecidos pelo CLI
 
-Os comandos `ddat init`, `session create`, `block create`, `prompt create` e `feedback create` renderizam estes placeholders nos templates que geram:
+Os comandos `ddae init`, `session create`, `block create`, `prompt create` e `feedback create` renderizam estes placeholders nos templates que geram:
 
 | Placeholder | Preenchido com | Onde aparece |
 |---|---|---|
@@ -37,4 +37,4 @@ Os comandos `ddat init`, `session create`, `block create`, `prompt create` e `fe
 
 ## 3. Convenção de Idioma
 
-O conteúdo dos documentos gerados pela DDAT é escrito em português técnico. Nomes de comandos, flags e identificadores do CLI (`init`, `--dir`, `--force`, `session create`, etc.) permanecem em inglês — são parte da interface do programa, não do conteúdo documental.
+O conteúdo dos documentos gerados pela DDAE é escrito em português técnico. Nomes de comandos, flags e identificadores do CLI (`init`, `--dir`, `--force`, `session create`, etc.) permanecem em inglês — são parte da interface do programa, não do conteúdo documental.

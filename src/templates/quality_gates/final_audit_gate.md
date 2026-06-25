@@ -4,7 +4,7 @@
 
 ## 1. Objetivo
 
-Verificar, ao final de uma sessão (ou do projeto), que toda a metodologia DDAT foi seguida de ponta a ponta — não apenas que o código funciona.
+Verificar, ao final de uma sessão (ou do projeto), que toda a metodologia DDAE foi seguida de ponta a ponta — não apenas que o código funciona.
 
 ## 2. Quando Aplicar
 
@@ -21,16 +21,16 @@ Verificar, ao final de uma sessão (ou do projeto), que toda a metodologia DDAT 
 - [ ] Commit: histórico de commits reflete o trabalho realizado, sem commits pendentes de confirmação esquecidos.
 - [ ] Release: changelog e release notes (`13_release/`) preenchidos, se a sessão gera entrega visível.
 - [ ] Riscos restantes: riscos não resolvidos foram promovidos para `Docs/04_governance/matriz_riscos.md`.
-- [ ] `ddat validate` e `ddat audit` executados sem apontar problema não tratado.
+- [ ] `ddae validate` e `ddae audit` executados sem apontar problema não tratado.
 
 ## 4. Critérios Mínimos de Aprovação
 
 - Nenhuma pendência P1 aberta em qualquer bloco da sessão.
-- `ddat audit` não reporta bloco sem prompt ou sem feedback correspondente.
+- `ddae audit` não reporta bloco sem prompt ou sem feedback correspondente.
 
 ## 5. Evidências Esperadas
 
-- Saída de `ddat validate` e `ddat audit`.
+- Saída de `ddae validate` e `ddae audit`.
 - Lista de blocos da sessão com status de feedback/validação de cada um.
 
 ## 6. Riscos Verificados

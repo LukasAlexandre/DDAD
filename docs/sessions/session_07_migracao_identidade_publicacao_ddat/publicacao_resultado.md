@@ -53,3 +53,5 @@ Resolver a autenticacao `EOTP` da conta npm e repetir somente a etapa de publica
 ```bash
 npm publish --auth-type=web
 ```
+
+> Atualização posterior: o nome DDAT também foi bloqueado para publicação npm por similaridade. A identidade final foi migrada no Bloco 08 para DDAE — Document-Driven AI Engineering.

@@ -49,3 +49,5 @@ A tentativa de publicacao real de `ddat@0.1.0` foi executada com `npm publish --
 ## Observacao historica
 
 Os documentos dos blocos anteriores foram preservados como registro historico. Referencias antigas a DDAD foram mantidas quando descrevem fatos ocorridos antes da migracao, e referencias operacionais atuais foram tratadas como DDAT.
+
+> Atualização posterior: o nome DDAT também foi bloqueado para publicação npm por similaridade. A identidade final foi migrada no Bloco 08 para DDAE — Document-Driven AI Engineering.

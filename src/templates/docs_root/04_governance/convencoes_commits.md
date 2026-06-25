@@ -2,7 +2,7 @@
 
 > Projeto: {{PROJECT_NAME}} · Atualizado em: {{CURRENT_DATE}}
 
-> Toda sugestão de commit semântico em feedbacks e prompts da DDAT segue este padrão. Nenhum commit é feito sem confirmação explícita do usuário — ver `Docs/00_ddat/regras_ddat.md`, regra 6.
+> Toda sugestão de commit semântico em feedbacks e prompts da DDAE segue este padrão. Nenhum commit é feito sem confirmação explícita do usuário — ver `Docs/00_ddae/regras_ddae.md`, regra 6.
 
 ## 1. Objetivo
 

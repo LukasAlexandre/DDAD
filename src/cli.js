@@ -12,10 +12,10 @@ import { auditCommand } from './commands/audit.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pkg = JSON.parse(readFileSync(path.join(__dirname, '..', 'package.json'), 'utf8'));
 
-const HELP = `ddat — Document-Driven AI Tools
+const HELP = `ddae — Document-Driven AI Engineering
 
 Usage:
-  ddat <command> [options]
+  ddae <command> [options]
 
 Commands:
   init                                            Scaffold the official Docs/ structure and AI agent rule files
@@ -28,18 +28,18 @@ Commands:
 
 Options:
   -h, --help        Show this help message
-  -v, --version     Print the installed ddat version
+  -v, --version     Print the installed ddae version
   --dir <path>      Target directory to operate in (default: current directory)
   --force           Overwrite files that already exist
 
 Examples:
-  npx ddat init
-  npx ddat session create "dashboard admin"
-  npx ddat block create "login administrativo" --session session_11_dashboard_admin
-  npx ddat prompt create --block bloco_01_login_administrativo --session session_11_dashboard_admin
-  npx ddat feedback create --block bloco_01_login_administrativo --session session_11_dashboard_admin
-  npx ddat validate
-  npx ddat audit
+  npx ddae init
+  npx ddae session create "dashboard admin"
+  npx ddae block create "login administrativo" --session session_11_dashboard_admin
+  npx ddae prompt create --block bloco_01_login_administrativo --session session_11_dashboard_admin
+  npx ddae feedback create --block bloco_01_login_administrativo --session session_11_dashboard_admin
+  npx ddae validate
+  npx ddae audit
 `;
 
 function parseArgs(args, { withValue = [] } = {}) {
@@ -76,7 +76,7 @@ function parseArgs(args, { withValue = [] } = {}) {
 function requireSubcommand(args, command, allowed) {
   const sub = args[0];
   if (!allowed.includes(sub)) {
-    throw new Error(`Usage: ddat ${command} ${allowed.join('|')} ...`);
+    throw new Error(`Usage: ddae ${command} ${allowed.join('|')} ...`);
   }
   return sub;
 }

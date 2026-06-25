@@ -24,7 +24,7 @@ _Copie os critérios de aceite do bloco (`05_blocks/bloco_{{BLOCK_NUMBER}}_{{BLO
 ## 4. Checklist Técnico
 
 - [ ] Código segue `Docs/04_governance/convencoes_codigo.md`.
-- [ ] `ddat validate` e `ddat audit` não reportam problema relacionado.
+- [ ] `ddae validate` e `ddae audit` não reportam problema relacionado.
 - [ ] _..._
 
 ## 5. Checklist de Segurança
