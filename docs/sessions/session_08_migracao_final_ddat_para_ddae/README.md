@@ -74,3 +74,5 @@ Adotar oficialmente DDAE como identidade final do projeto antes da primeira publ
 - `npm publish --dry-run` deve passar sem warning crítico.
 - Publicação real deve ser executada somente se todos os critérios forem atendidos.
 - Feedback final deve registrar se `npm publish` foi executado ou bloqueado.
+
+> Atualização posterior (Bloco 09): o nome DDAE também foi bloqueado para publicação npm por similaridade (pacote `dva`). A identidade final do projeto foi consolidada como DDAE Engine — Document-Driven AI Engineering Engine, pacote npm `ddae-engine`.

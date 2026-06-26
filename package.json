@@ -1,10 +1,10 @@
 {
-  "name": "ddae",
+  "name": "ddae-engine",
   "version": "0.1.0",
-  "description": "DDAE — Document-Driven AI Engineering. A CLI that scaffolds a document-driven workflow and AI agent rules into any project.",
+  "description": "DDAE Engine — Document-Driven AI Engineering Engine. A CLI that scaffolds a document-driven workflow and AI agent rules into any project.",
   "type": "module",
   "bin": {
-    "ddae": "bin/ddae.js"
+    "ddae-engine": "bin/ddae-engine.js"
   },
   "main": "src/cli.js",
   "author": "LukasAlexandre",
@@ -18,10 +18,10 @@
     "node": ">=18"
   },
   "scripts": {
-    "start": "node bin/ddae.js"
+    "start": "node bin/ddae-engine.js"
   },
   "keywords": [
-    "ddae",
+    "ddae-engine",
     "ai",
     "agents",
     "documentation",

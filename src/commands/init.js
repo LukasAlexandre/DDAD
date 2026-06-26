@@ -50,7 +50,7 @@ export async function initCommand({ dir, force }) {
   );
 
   writeJson(
-    path.join(dir, 'ddae.config.json'),
+    path.join(dir, 'ddae-engine.config.json'),
     {
       version: pkg.version,
       docsDir: 'Docs',
@@ -69,9 +69,9 @@ function report({ dir, created, skipped }) {
   if (skipped.length > 0) {
     console.log(`Skipped (already exist, use --force to overwrite): ${skipped.length} file(s)`);
   }
-  console.log('\nDDAE initialized. Next steps:');
+  console.log('\nDDAE Engine initialized. Next steps:');
   console.log('  1. Fill in Docs/01_product/visao_produto.md with your project vision.');
   console.log('  2. Review CLAUDE.md / AGENTS.md / .cursorrules and adjust to your workflow.');
-  console.log('  3. Create your first session: ddae session create "<nome>"');
-  console.log(`  4. Run "ddae validate" to check the structure (from ${path.relative(process.cwd(), dir) || '.'}).`);
+  console.log('  3. Create your first session: ddae-engine session create "<nome>"');
+  console.log(`  4. Run "ddae-engine validate" to check the structure (from ${path.relative(process.cwd(), dir) || '.'}).`);
 }

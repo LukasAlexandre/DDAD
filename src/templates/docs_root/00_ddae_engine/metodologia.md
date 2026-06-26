@@ -1,12 +1,12 @@
-# Metodologia DDAE
+# Metodologia DDAE Engine
 
 > Projeto: {{PROJECT_NAME}} · Atualizado em: {{CURRENT_DATE}}
 
-## 1. O que é DDAE
+## 1. O que é DDAE Engine
 
-DDAE — **Document-Driven AI Engineering** — é uma metodologia onde os documentos em `Docs/` são a fonte da verdade do projeto, não o código. Antes de qualquer linha de código ser escrita, o que deve ser construído, por quê e dentro de quais limites já está registrado em um documento. O código é a implementação do que o documento descreve — nunca o contrário.
+DDAE Engine — **Document-Driven AI Engineering Engine** — é uma metodologia onde os documentos em `Docs/` são a fonte da verdade do projeto, não o código. Antes de qualquer linha de código ser escrita, o que deve ser construído, por quê e dentro de quais limites já está registrado em um documento. O código é a implementação do que o documento descreve — nunca o contrário.
 
-Isso existe porque agentes de IA (e equipes humanas) perdem contexto entre sessões de trabalho. Sem um registro estruturado e persistente de intenção, cada nova sessão precisa re-derivar escopo a partir do prompt e do código existente — e cada re-derivação se afasta um pouco mais do design original. A DDAE resolve isso fixando intenção, decisões e validações em documentos versionados junto com o código.
+Isso existe porque agentes de IA (e equipes humanas) perdem contexto entre sessões de trabalho. Sem um registro estruturado e persistente de intenção, cada nova sessão precisa re-derivar escopo a partir do prompt e do código existente — e cada re-derivação se afasta um pouco mais do design original. A DDAE Engine resolve isso fixando intenção, decisões e validações em documentos versionados junto com o código.
 
 ## 2. Por que a documentação vem primeiro
 
@@ -22,10 +22,10 @@ Sessão → Bloco → Prompt → Implementação → Feedback → Validação �
 ```
 
 1. **Sessão** (`Docs/05_sessions/session_NN_<nome>/`) agrupa um conjunto coerente de blocos em torno de um tema (ex.: fundação do produto, autenticação, performance).
-2. **Bloco** (`05_blocks/bloco_NN_<nome>.md`) é a unidade de execução: uma tarefa delimitada, com escopo e critérios de aceite explícitos. Criado com `ddae block create "<nome>" --session <sessao>`.
-3. **Prompt** (`06_prompts/prompt_<bloco>.md`) traduz o bloco em instruções executáveis para um agente de IA. Gerado com `ddae prompt create --block <bloco> --session <sessao>`.
+2. **Bloco** (`05_blocks/bloco_NN_<nome>.md`) é a unidade de execução: uma tarefa delimitada, com escopo e critérios de aceite explícitos. Criado com `ddae-engine block create "<nome>" --session <sessao>`.
+3. **Prompt** (`06_prompts/prompt_<bloco>.md`) traduz o bloco em instruções executáveis para um agente de IA. Gerado com `ddae-engine prompt create --block <bloco> --session <sessao>`.
 4. **Implementação** acontece contra o que o bloco e o prompt descrevem — não contra suposições adicionais do agente.
-5. **Feedback** (`08_feedbacks/feedback_<bloco>.md`) registra o que foi de fato implementado, o que mudou, o que ficou pendente. Gerado com `ddae feedback create --block <bloco> --session <sessao>`.
+5. **Feedback** (`08_feedbacks/feedback_<bloco>.md`) registra o que foi de fato implementado, o que mudou, o que ficou pendente. Gerado com `ddae-engine feedback create --block <bloco> --session <sessao>`.
 6. **Validação** decide se o bloco é aprovado e se o próximo pode começar.
 7. O ciclo se repete para o próximo bloco, dentro da mesma sessão ou em uma nova.
 
@@ -37,7 +37,7 @@ A documentação em `Docs/` não é um artefato secundário gerado depois do có
 
 Agentes de IA (humanos também, mas o framework é desenhado para tornar isso possível mesmo sem memória entre sessões) devem:
 
-- Ler `Docs/00_ddae/metodologia.md` e `Docs/00_ddae/regras_ddae.md` antes de implementar.
+- Ler `Docs/00_ddae_engine/metodologia.md` e `Docs/00_ddae_engine/regras_ddae_engine.md` antes de implementar.
 - Ler o bloco ativo antes de alterar código.
 - Não expandir escopo sem autorização explícita.
 - Não commitar sem confirmação do usuário.
@@ -45,7 +45,7 @@ Agentes de IA (humanos também, mas o framework é desenhado para tornar isso po
 - Respeitar contratos técnicos (`Docs/03_contracts/`), design system (`Docs/07_design_system/`) e quality gates (`Docs/06_quality_gates/`).
 - Registrar pendências usando a escala P1–P4 (seção 7).
 
-Ver `Docs/00_ddae/regras_ddae.md` para a lista completa de regras obrigatórias.
+Ver `Docs/00_ddae_engine/regras_ddae_engine.md` para a lista completa de regras obrigatórias.
 
 ## 6. Regra de Feedback
 
@@ -53,7 +53,7 @@ Todo bloco termina com um feedback. Sem feedback, o bloco não está concluído 
 
 ## 7. Regra de Validação
 
-A validação é o gate de liberação do próximo bloco. Um bloco aprovado libera o próximo; um bloco bloqueado ou reprovado não libera nada até que as pendências críticas (P1) sejam resolvidas. Use `ddae validate` para checar conformidade estrutural do `Docs/` e `ddae audit` para encontrar blocos, prompts ou feedbacks órfãos.
+A validação é o gate de liberação do próximo bloco. Um bloco aprovado libera o próximo; um bloco bloqueado ou reprovado não libera nada até que as pendências críticas (P1) sejam resolvidas. Use `ddae-engine validate` para checar conformidade estrutural do `Docs/` e `ddae-engine audit` para encontrar blocos, prompts ou feedbacks órfãos.
 
 ## 8. Regra de Commit Semântico
 
@@ -61,11 +61,11 @@ Todo bloco encerra com uma sugestão de commit semântico (`feat`, `fix`, `docs`
 
 ## 9. Padrão de Sessões
 
-Uma sessão é um agrupamento temático de blocos (ex.: `session_05_auth_security`). As 10 sessões base criadas por `ddae init` são um ponto de partida, não um limite — `ddae session create "<nome>"` numera a próxima automaticamente (`session_11`, `session_12`, ...).
+Uma sessão é um agrupamento temático de blocos (ex.: `session_05_auth_security`). As 10 sessões base criadas por `ddae-engine init` são um ponto de partida, não um limite — `ddae-engine session create "<nome>"` numera a próxima automaticamente (`session_11`, `session_12`, ...).
 
 ## 10. Padrão de Blocos
 
-Um bloco é a menor unidade de execução com escopo fechado. Veja `Docs/00_ddae/folder_schema.md` para a estrutura interna de uma sessão e `src/templates/block/bloco_template.md` (no CLI) para a estrutura de um bloco.
+Um bloco é a menor unidade de execução com escopo fechado. Veja `Docs/00_ddae_engine/folder_schema.md` para a estrutura interna de uma sessão e `src/templates/block/bloco_template.md` (no CLI) para a estrutura de um bloco.
 
 ## 11. Padrão de Prompts
 
@@ -82,6 +82,6 @@ Um prompt é gerado a partir de um bloco existente e deve ser autossuficiente: c
 
 ## 13. Veja Também
 
-- `Docs/00_ddae/regras_ddae.md` — regras obrigatórias e boas práticas.
-- `Docs/00_ddae/folder_schema.md` — estrutura de pastas e convenções de nomenclatura.
-- `Docs/00_ddae/glossario.md` — termos usados em toda a documentação.
+- `Docs/00_ddae_engine/regras_ddae_engine.md` — regras obrigatórias e boas práticas.
+- `Docs/00_ddae_engine/folder_schema.md` — estrutura de pastas e convenções de nomenclatura.
+- `Docs/00_ddae_engine/glossario.md` — termos usados em toda a documentação.

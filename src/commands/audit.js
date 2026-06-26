@@ -5,7 +5,7 @@ import { auditQualityGates } from '../utils/quality-gates.js';
 import { getMarkdownSection, hasFilledListItem, readMarkdownFile } from '../utils/markdown-checks.js';
 
 const MAIN_SUBFOLDERS = [
-  '00_ddae',
+  '00_ddae_engine',
   '01_product',
   '02_architecture',
   '03_contracts',
@@ -126,13 +126,13 @@ export async function auditCommand({ dir }) {
   const docsDir = path.join(dir, 'Docs');
 
   if (!fs.existsSync(docsDir)) {
-    console.log('DDAE Audit Report\n');
+    console.log('DDAE Engine Audit Report\n');
     console.log('Status: FAILED');
     console.log('Warnings: 0');
     console.log('Errors: 1');
     console.log('Suggestions: 0');
     console.log('\nErrors:');
-    console.log('  - Docs/ não encontrado. Execute "ddae init" primeiro.');
+    console.log('  - Docs/ não encontrado. Execute "ddae-engine init" primeiro.');
     process.exitCode = 1;
     return;
   }
@@ -147,8 +147,8 @@ export async function auditCommand({ dir }) {
   errors.push(...gatesAudit.errors);
   warnings.push(...gatesAudit.warnings);
 
-  if (!fs.existsSync(path.join(docsDir, '00_ddae', 'metodologia.md'))) {
-    warnings.push('Arquivo ausente: Docs/00_ddae/metodologia.md');
+  if (!fs.existsSync(path.join(docsDir, '00_ddae_engine', 'metodologia.md'))) {
+    warnings.push('Arquivo ausente: Docs/00_ddae_engine/metodologia.md');
   }
 
   for (const file of ROOT_FILES) {
@@ -165,7 +165,7 @@ export async function auditCommand({ dir }) {
 
   const status = errors.length === 0 ? 'OK' : 'FAILED';
 
-  console.log('DDAE Audit Report\n');
+  console.log('DDAE Engine Audit Report\n');
   console.log(`Status: ${status}`);
   console.log(`Warnings: ${warnings.length}`);
   console.log(`Errors: ${errors.length}`);

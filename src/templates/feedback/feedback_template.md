@@ -46,7 +46,7 @@ _O que foi testado e como (manual, automatizado). Resultado de cada teste, não 
 
 ## 9. Validações Executadas
 
-_Resultado de `ddae validate`, `ddae audit`, lint, build, etc._
+_Resultado de `ddae-engine validate`, `ddae-engine audit`, lint, build, etc._
 
 - _..._
 

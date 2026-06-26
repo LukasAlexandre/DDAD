@@ -71,3 +71,5 @@ A publicacao como `ddad` foi bloqueada pelo npm por similaridade com pacotes exi
 O npm 11.12.1 autocorrigiu `"./bin/ddat.js"` para `"bin/ddat.js"`. A forma normalizada foi mantida porque elimina o warning de publish que removia o binario do pacote durante a normalizacao do npm.
 
 > Atualização posterior: o nome DDAT também foi bloqueado para publicação npm por similaridade. A identidade final foi migrada no Bloco 08 para DDAE — Document-Driven AI Engineering.
+
+> Atualização posterior (Bloco 09): o nome DDAE também foi bloqueado para publicação npm por similaridade (pacote `dva`). A identidade final do projeto foi consolidada como DDAE Engine — Document-Driven AI Engineering Engine, pacote npm `ddae-engine`.
